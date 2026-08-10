@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will Miller | Portfólio</title>
+    
+    <link rel="icon" type="image/png" href="assets/favicon-redondo.png">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/apple-touch-icon.png">
+    <link rel="manifest" href="assets/site.webmanifest">
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#81af91", // Verde suave
+                        dark: "#252426",    // Chumbo/Cinza escuro
+                        light: "#F5F9FF",   // Off-white quente
+                    },
+                    fontFamily: {
+                        montserrat: ['Montserrat', 'sans-serif'],
+                        roboto: ['Roboto', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #F5F9FF; color: #252426; }
+        
+        /* Espaçamento Global */
+        .section-padding { padding-top: 6rem; padding-bottom: 6rem; }
+
+        /* Formas Orgânicas */
+        .organic-shape { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; }
+        .organic-card { border-radius: 12px 32px 16px 24px; }
+        .organic-img { border-radius: 16px 24px 8px 32px; }
+        
+        /* Novo Formato Ultra-Fluido (Usado no Livro) */
+        .livro-shape { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+
+        /* Manchas de cor difusas (Blobs) */
+        .blob-bg {
+            position: absolute;
+            background: linear-gradient(135deg, #81af91 0%, rgba(129, 175, 145, 0.4) 100%);
+            filter: blur(60px);
+            z-index: 0;
+            opacity: 0.35;
+            border-radius: 50% 60% 40% 70% / 60% 40% 70% 50%;
+            animation: morph 8s ease-in-out infinite alternate;
+        }
+        .blob-1 { width: 400px; height: 400px; top: -100px; left: -100px; }
+        .blob-2 { width: 300px; height: 300px; bottom: 10%; right: -50px; }
+
+        @keyframes morph {
+            0% { border-radius: 40% 60% 60% 40% / 60% 30% 70% 40%; transform: scale(1) rotate(0deg); }
+            100% { border-radius: 60% 40% 30% 70% / 40% 70% 30% 60%; transform: scale(1.1) rotate(10deg); }
+        }
+
+        /* Estilo para a Paginação Branca em todos os Swipers de Galeria */
+        .galeriaLivroSwiper .swiper-pagination-bullet,
+        .galeriaPerfilSwiper .swiper-pagination-bullet,
+        .galeriaFinalSwiper .swiper-pagination-bullet { background: white; opacity: 0.5; }
+        
+        .galeriaLivroSwiper .swiper-pagination-bullet-active,
+        .galeriaPerfilSwiper .swiper-pagination-bullet-active,
+        .galeriaFinalSwiper .swiper-pagination-bullet-active { opacity: 1; background: white; }
+
+        /* Ajuste específico para paginação nos mini-cards e card expandido */
+        .cardSwiper .swiper-pagination-bullet,
+        .cardSwiperAuto .swiper-pagination-bullet,
+        .galeriaExpandidoSwiper .swiper-pagination-bullet,
+        .organic-card .swiper-pagination-bullet { background: white; opacity: 0.7; }
+
+        .cardSwiper .swiper-pagination-bullet-active,
+        .cardSwiperAuto .swiper-pagination-bullet-active,
+        .galeriaExpandidoSwiper .swiper-pagination-bullet-active,
+        .organic-card .swiper-pagination-bullet-active { background: #81af91; opacity: 1; }
+
+        /* Estilo customizado para as setas da galeria expandida para ficarem verdes ao passar o mouse */
+        .swiper-nav-expandido {
+            color: white !important;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+            position: absolute !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            margin-top: 0 !important;
+            z-index: 100 !important;
+        }
+        .swiper-nav-expandido:hover {
+            color: #81af91 !important; /* Cor hover verde */
+            opacity: 1;
+            transform: translateY(-50%) scale(1.1) !important;
+        }
+        
+        /* Alinhamento Específico Esquerda/Direita para respeitar as margens dos textos e botões */
+        .swiper-button-prev.swiper-nav-expandido { left: 2rem !important; }
+        @media (min-width: 768px) { .swiper-button-prev.swiper-nav-expandido { left: 3rem !important; } }
+        
+        .swiper-button-next.swiper-nav-expandido { right: 2rem !important; }
+        @media (min-width: 768px) { .swiper-button-next.swiper-nav-expandido { right: 3rem !important; } }
+
+        /* Efeito de Borda/Moldura para Imagens com o Hover */
+        .hover-moldura-verde {
+            border: 4px solid transparent;
+            transition: border-color 0.3s ease, filter 0.3s ease;
+        }
+        .hover-moldura-verde:hover {
+            border-color: #81af91;
+        }
+        
+        .hover-moldura-laranja {
+            border: 4px solid transparent;
+            transition: border-color 0.3s ease, filter 0.3s ease;
+        }
+        .hover-moldura-laranja:hover {
+            border-color: #E07A5F;
+        }
+
+    </style>
+
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "83e3b67557b44d33933c4dab43675f1f"}'></script>
+
+</head>
+
+<body class="font-montserrat relative overflow-x-hidden">
+
+    <header class="fixed w-full top-0 z-50 bg-[#F5F9FF]/90 backdrop-blur-md shadow-sm border-b border-gray-200/50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#home" class="text-xl font-bold text-dark tracking-wider hover:text-primary transition-colors uppercase">Will Miller</a>
+            
+            <ul class="hidden lg:flex space-x-6 text-sm font-semibold uppercase tracking-wide">
+                <li><a href="#home" class="text-dark hover:text-primary transition-colors">Home</a></li>
+                <li><a href="#sobre" class="text-dark hover:text-primary transition-colors">Sobre</a></li>
+                <li><a href="#palco-tela" class="text-dark hover:text-primary transition-colors">Palco e Tela</a></li>
+                <li><a href="#literatura" class="text-dark hover:text-primary transition-colors">Literatura</a></li>
+                <li><a href="#educacao" class="text-dark hover:text-primary transition-colors">Arte-Educação</a></li>
+                <li><a href="#producao" class="text-dark hover:text-primary transition-colors">Produção</a></li>
+                <li><a href="#contato" class="text-dark hover:text-primary transition-colors">Contato e Galeria</a></li>
+            </ul>
+
+            <button id="mobile-menu-btn" class="lg:hidden text-dark hover:text-primary transition-all duration-300 transform text-2xl focus:outline-none">
+                <i class="fas fa-bars"></i>
+            </button>
+        </nav>
+
+        <div id="mobile-menu" class="lg:hidden bg-light border-gray-200 overflow-hidden transition-all duration-300 ease-in-out max-h-0 opacity-0">
+            <ul class="flex flex-col space-y-4 px-6 py-4 font-semibold uppercase text-sm">
+                <li><a href="#home" class="block text-dark hover:text-primary transition-colors">Home</a></li>
+                <li><a href="#sobre" class="block text-dark hover:text-primary transition-colors">Sobre</a></li>
+                <li><a href="#palco-tela" class="block text-dark hover:text-primary transition-colors">Palco e Tela</a></li>
+                <li><a href="#literatura" class="block text-dark hover:text-primary transition-colors">Literatura</a></li>
+                <li><a href="#educacao" class="block text-dark hover:text-primary transition-colors">Arte-Educação</a></li>
+                <li><a href="#producao" class="block text-dark hover:text-primary transition-colors">Produção</a></li>
+                <li><a href="#contato" class="block text-dark hover:text-primary transition-colors">Contato e Galeria</a></li>
+            </ul>
+        </div>
+    </header>
+
+
+    <section id="home" class="relative bg-dark min-h-screen flex items-center pt-20 pb-24 md:pb-0 overflow-hidden text-gray-100">
+        <div class="blob-bg blob-1"></div>
+        <div class="blob-bg blob-2" style="background: rgba(129, 175, 145, 0.2);"></div>
+        
+        <div class="container mx-auto px-6 relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-12">
+            <div class="w-full md:w-1/2">
+                <h1 class="text-5xl md:text-7xl font-bold mb-4 uppercase text-white tracking-tight">Will Miller</h1>
+                <p class="text-xl md:text-2xl font-light text-primary mb-6">Ator • Diretor • Escritor • Educador • Produtor</p>
+                <p class="font-roboto text-gray-300 mb-8 max-w-lg leading-relaxed">
+                    Atuo na criação de narrativas pelo corpo, pela imagem e pela palavra. Projetos culturais, pesquisa, cinema e palcos.
+                </p>
+                
+                <div class="flex flex-col items-center md:items-start gap-3 w-full">
+                    
+                    <a href="https://drive.google.com/uc?export=download&id=1SH7FVSGglfUgo7VtYM3wc5bfh87O_EN8" download="Portfólio_Will_Miller.pdf" target="_blank" class="bg-primary text-dark font-bold px-6 py-3 organic-card hover:bg-white hover:text-dark transition-colors inline-block">
+                        Baixar Portfólio (PDF)
+                    </a>
+                    
+                    <div class="flex items-center justify-center md:justify-start gap-4 md:ml-2 mt-1">
+                        <a href="mailto:silvawilyleite@gmail.com" class="text-white/50 hover:text-primary transition-all duration-300 text-2xl hover:scale-110" aria-label="Enviar E-mail">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://www.instagram.com/xwillmiller/" target="_blank" rel="noopener noreferrer" class="text-white/50 hover:text-primary transition-all duration-300 text-2xl hover:scale-110" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <div class="w-full md:w-1/2 flex justify-center">
+                <div class="relative w-64 h-96 md:w-80 md:h-[32rem] overflow-hidden organic-img shadow-2xl cursor-pointer swiper profileSwiper group transition-all duration-300 hover:brightness-110 hover-moldura-verde" onclick="abrirGaleriaPerfil()">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide relative w-full h-full isolate overflow-hidden bg-dark">
+                            <img src="assets/url-img-perfil-2.jpg" alt="Will Miller" class="w-full h-full object-cover scale-[1.8] translate-y-10 -translate-x-12 md:scale-[1.8] md:translate-y-10 md:-translate-x-12">
+                        </div>
+                        <div class="swiper-slide relative w-full h-full isolate overflow-hidden bg-dark">
+                            <img src="assets/url-img-perfil-3.png" alt="Will Miller" class="w-full h-full object-cover scale-[1.2] translate-y-1 translate-x-0 md:scale-[1.1] md:-translate-y-6 md:-translate-x-1">
+                        </div>
+                    </div>
+                    
+                    <button class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                        <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre" class="section-padding bg-light relative">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-4xl font-bold uppercase text-dark mb-12 text-center">Sobre Mim</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div>
+                    <div class="mb-4">
+                        <h3 class="text-2xl font-semibold text-primary uppercase leading-tight">O Artista</h3>
+                        <a href="trajetoria.html" class="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-dark/60 hover:text-primary transition-colors mt-1 group">
+                            Conheça a minha trajetória <i class="fas fa-arrow-right text-[9px] group-hover:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                    
+                    <p class="font-roboto text-dark leading-relaxed mb-6 text-justify">
+                        Seja bem-vinda(o) à minha página. Sou Will Miller, ator de teatro e cinema, pesquisador, arte-educador e escritor. Atuo também na produção de projetos culturais, com experiência em escrita criativa, leis de incentivo e espaços culturais. Sou graduado em Teatro (UFMG), com intercâmbio em Artes Audiovisuais (UNLP/Argentina). Possuo experiência em edição de vídeo, motion e VFX (Adobe Premiere, After Effects).
+                    </p>
+                    <p class="font-roboto text-dark"><strong>Idade:</strong> 24 anos | <strong>Altura:</strong> 1,74m</p>
+                </div>
+
+                <div>
+                    <div class="mb-4">
+                        <h3 class="text-xl font-semibold text-primary uppercase leading-tight">Formação acadêmica</h3>
+                        <a href="https://lattes.cnpq.br/6146741416005526" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1 text-[11px] font-bold uppercase tracking-wider text-dark/60 hover:text-primary transition-colors mt-1 group">
+                            Acesse o currículo Lattes <i class="fas fa-external-link-alt text-[9px] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <h4 class="font-bold text-sm">Graduação em Teatro (2020-2026)</h4>
+                            <p class="text-sm text-gray-600">Universidade Federal de Minas Gerais (UFMG)</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-sm">Intercâmbio em Artes Audiovisuais (2025)</h4>
+                            <p class="text-sm text-gray-600">Universidad Nacional de La Plata - Argentina</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="text-3xl font-bold uppercase text-dark mb-8 border-l-4 border-primary pl-4">Competências</h2>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary uppercase mb-4">Habilidades</h3>
+                        <ul class="font-roboto text-dark space-y-2 text-sm">
+                            <li>• Edição e montagem de vídeo (VFX)</li>
+                            <li>• Adobe Premiere, After Effects, CapCut</li>
+                            <li>• Escrita Criativa</li>
+                            <li>• Planejamento e Responsabilidade</li>
+                            <li>• Proatividade e Inovação</li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary uppercase mb-4">Idiomas</h3>
+                        <div class="flex flex-col gap-2 font-roboto text-sm text-dark">
+                            <span class="bg-primary/10 px-3 py-2 rounded-lg border border-primary/20"><strong>Português:</strong> Nativo</span>
+                            <span class="bg-primary/10 px-3 py-2 rounded-lg border border-primary/20"><strong>Espanhol:</strong> Fluente</span>
+                            <span class="bg-primary/10 px-3 py-2 rounded-lg border border-primary/20"><strong>Inglês:</strong> Básico</span>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="text-xl font-semibold text-primary uppercase mb-4">Hobbies</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-primary/10 border-2 border-primary/30 text-dark px-3 py-1 rounded-full text-xs font-medium hover:shadow-md transition-shadow cursor-default">Violão</span>
+                            <span class="bg-primary/10 border-2 border-primary/30 text-dark px-3 py-1 rounded-full text-xs font-medium hover:shadow-md transition-shadow cursor-default">Xequerê</span>
+                            <span class="bg-primary/10 border-2 border-primary/30 text-dark px-3 py-1 rounded-full text-xs font-medium hover:shadow-md transition-shadow cursor-default">Patins</span>
+                            <span class="bg-primary/10 border-2 border-primary/30 text-dark px-3 py-1 rounded-full text-xs font-medium hover:shadow-md transition-shadow cursor-default">Fotografia B&W</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="palco-tela" class="section-padding bg-white relative">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-4xl font-bold uppercase text-dark mb-16 text-center">Palco e Tela</h2>
+            
+            <h3 class="text-2xl font-bold mb-8 text-primary uppercase border-l-4 border-primary pl-4">Atuação</h3>
+            
+            <div class="relative max-w-[1024px] mx-auto">
+                <div class="absolute top-0 left-0 h-full w-10 bg-gradient-to-r from-white to-transparent z-20 pointer-events-none"></div>
+                <div class="absolute top-0 right-0 h-full w-10 bg-gradient-to-l from-white to-transparent z-20 pointer-events-none"></div>
+
+                <div class="swiper atuacaoSwiper pb-12 overflow-hidden">
+                    <div class="swiper-wrapper">
+                        
+                        <article onclick="abrirModalExpandido('anaGuasu', event)" class="swiper-slide bg-dark organic-card shadow-sm hover:shadow-2xl transition-shadow transition-colors duration-300 relative overflow-hidden group border-4 border-transparent hover:border-primary cursor-pointer" style="width: 320px; height: 450px;">
+                            <div class="swiper cardSwiper w-full h-full absolute inset-0 z-0">
+                                <div class="swiper-wrapper cursor-grab active:cursor-grabbing">
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-ag-5.jpg" alt="Aña Guasu" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-ag-3.jpg" alt="Aña Guasu" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-ag-2.jpg" alt="Aña Guasu" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-ag-4.jpg" alt="Aña Guasu" class="w-full h-full object-cover"></div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10 pointer-events-none"></div>
+                            <div class="absolute bottom-0 left-0 w-full h-1/2 z-20 arrasta-externo"></div>
+                            <button onclick="abrirModalExpandido('anaGuasu', event)" class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                                <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                            </button>
+                            <div class="absolute bottom-6 left-6 right-6 z-20 text-white pointer-events-none">
+                                <h4 class="text-xl font-bold uppercase mb-1 drop-shadow-md">Aña Guasu</h4>
+                                <p class="font-roboto text-gray-200 text-sm mb-1.5 drop-shadow">De Lautaro Zarate, 2025 | Curta-metragem</p>
+                                <div class="space-y-0.5 text-xs font-roboto text-gray-300">
+                                    <p class="drop-shadow"><strong>Gênero:</strong> Terror</p>
+                                    <div class="flex items-center mt-2">
+                                        <p class="text-primary font-semibold drop-shadow-lg text-sm">Personagem: Mark (protagonista)</p>
+                                        <div class="swiper-pagination !relative !bottom-0 !w-auto flex items-center pointer-events-auto ml-auto"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article onclick="abrirModalExpandido('seteAm', event)" class="swiper-slide bg-dark organic-card shadow-sm hover:shadow-2xl transition-shadow transition-colors duration-300 relative overflow-hidden group border-4 border-transparent hover:border-primary cursor-pointer" style="width: 320px; height: 450px;">
+                            <div class="swiper cardSwiper w-full h-full absolute inset-0 z-0">
+                                <div class="swiper-wrapper cursor-grab active:cursor-grabbing">
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-7am-1.jpg" alt="7 AM" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-7am-2.jpg" alt="7 AM" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-7am-3.jpg" alt="7 AM" class="w-full h-full object-cover"></div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10 pointer-events-none"></div>
+                            <div class="absolute bottom-0 left-0 w-full h-1/2 z-20 arrasta-externo"></div>
+                            <button onclick="abrirModalExpandido('seteAm', event)" class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                                <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                            </button>
+                            <div class="absolute bottom-6 left-6 right-6 z-20 text-white pointer-events-none">
+                                <h4 class="text-xl font-bold uppercase mb-1 drop-shadow-md">7 AM</h4>
+                                <p class="font-roboto text-gray-200 text-sm mb-1.5 drop-shadow">De Valiere Bello, 2025 | Curta-metragem</p>
+                                <div class="space-y-0.5 text-xs font-roboto text-gray-300">
+                                    <p class="drop-shadow"><strong>Gênero:</strong> Thriller Psicológico</p>
+                                    <div class="flex items-center mt-2">
+                                        <p class="text-primary font-semibold drop-shadow-lg text-sm">Personagem: Esteban (protagonista)</p>
+                                        <div class="swiper-pagination !relative !bottom-0 !w-auto flex items-center pointer-events-auto ml-auto"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article onclick="abrirModalExpandido('maeCoragem', event)" class="swiper-slide bg-dark organic-card shadow-sm hover:shadow-2xl transition-shadow transition-colors duration-300 relative overflow-hidden group border-4 border-transparent hover:border-primary cursor-pointer" style="width: 320px; height: 450px;">
+                            <div class="swiper cardSwiper w-full h-full absolute inset-0 z-0">
+                                <div class="swiper-wrapper cursor-grab active:cursor-grabbing">
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-enmc-1.jpg" alt="Mãe Coragem" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-enmc-2.jpg" alt="Mãe Coragem" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-enmc-3.jpg" alt="Mãe Coragem" class="w-full h-full object-cover"></div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10 pointer-events-none"></div>
+                            <div class="absolute bottom-0 left-0 w-full h-1/2 z-20 arrasta-externo"></div>
+                            <button onclick="abrirModalExpandido('maeCoragem', event)" class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                                <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                            </button>
+                            <div class="absolute bottom-6 left-6 right-6 z-20 text-white pointer-events-none">
+                                <h4 class="text-xl font-bold uppercase mb-1 drop-shadow-md">Esta Noite Mãe Coragem</h4>
+                                <p class="font-roboto text-gray-200 text-sm mb-1.5 drop-shadow">De Antonio Hildebrando, 2023 | Espetáculo</p>
+                                <div class="space-y-0.5 text-xs font-roboto text-gray-300">
+                                    <p class="drop-shadow"><strong>Gênero:</strong> Cabaret</p>
+                                    <div class="flex items-center mt-2">
+                                        <p class="text-primary font-semibold drop-shadow-lg text-sm">Personagem: Tôca</p>
+                                        <div class="swiper-pagination !relative !bottom-0 !w-auto flex items-center pointer-events-auto ml-auto"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article onclick="abrirModalExpandido('conexoes', event)" class="swiper-slide bg-dark organic-card shadow-sm hover:shadow-2xl transition-shadow transition-colors duration-300 relative overflow-hidden group border-4 border-transparent hover:border-primary cursor-pointer" style="width: 320px; height: 450px;">
+                            <div class="swiper cardSwiper w-full h-full absolute inset-0 z-0">
+                                <div class="swiper-wrapper cursor-grab active:cursor-grabbing">
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-cnt-1.jpg" alt="Conexões Não Táteis" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-cnt-2.jpg" alt="Conexões Não Táteis" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-cnt-3.jpg" alt="Conexões Não Táteis" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-cnt-4.jpg" alt="Conexões Não Táteis" class="w-full h-full object-cover"></div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10 pointer-events-none"></div>
+                            <div class="absolute bottom-0 left-0 w-full h-1/2 z-20 arrasta-externo"></div>
+                            <button onclick="abrirModalExpandido('conexoes', event)" class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                                <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                            </button>
+                            <div class="absolute bottom-6 left-6 right-6 z-20 text-white pointer-events-none">
+                                <h4 class="text-xl font-bold uppercase mb-1 drop-shadow-md">Conexões Não Táteis</h4>
+                                <p class="font-roboto text-gray-200 text-sm mb-1.5 drop-shadow">De Will Miller e Cine Barranco, 2021 | Websérie</p>
+                                <div class="space-y-0.5 text-xs font-roboto text-gray-300">
+                                    <p class="drop-shadow"><strong>Gênero:</strong> Drama contemporâneo</p>
+                                    <div class="flex items-center mt-2">
+                                        <p class="text-primary font-semibold drop-shadow-lg text-sm">Personagem: Luan (protagonista)</p>
+                                        <div class="swiper-pagination !relative !bottom-0 !w-auto flex items-center pointer-events-auto ml-auto"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article onclick="abrirModalExpandido('anaGuasu', event)" class="swiper-slide bg-dark organic-card shadow-sm hover:shadow-2xl transition-shadow transition-colors duration-300 relative overflow-hidden group border-4 border-transparent hover:border-primary cursor-pointer" style="width: 320px; height: 450px;">
+                            <div class="swiper cardSwiper w-full h-full absolute inset-0 z-0">
+                                <div class="swiper-wrapper cursor-grab active:cursor-grabbing">
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-ag-5.jpg" alt="Aña Guasu" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-ag-3.jpg" alt="Aña Guasu" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-ag-2.jpg" alt="Aña Guasu" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-ag-4.jpg" alt="Aña Guasu" class="w-full h-full object-cover"></div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10 pointer-events-none"></div>
+                            <div class="absolute bottom-0 left-0 w-full h-1/2 z-20 arrasta-externo"></div>
+                            <button onclick="abrirModalExpandido('anaGuasu', event)" class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                                <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                            </button>
+                            <div class="absolute bottom-6 left-6 right-6 z-20 text-white pointer-events-none">
+                                <h4 class="text-xl font-bold uppercase mb-1 drop-shadow-md">Aña Guasu</h4>
+                                <p class="font-roboto text-gray-200 text-sm mb-1.5 drop-shadow">De Lautaro Zarate, 2025 | Curta-metragem</p>
+                                <div class="space-y-0.5 text-xs font-roboto text-gray-300">
+                                    <p class="drop-shadow"><strong>Gênero:</strong> Terror</p>
+                                    <div class="flex items-center mt-2">
+                                        <p class="text-primary font-semibold drop-shadow-lg text-sm">Personagem: Mark (protagonista)</p>
+                                        <div class="swiper-pagination !relative !bottom-0 !w-auto flex items-center pointer-events-auto ml-auto"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article onclick="abrirModalExpandido('seteAm', event)" class="swiper-slide bg-dark organic-card shadow-sm hover:shadow-2xl transition-shadow transition-colors duration-300 relative overflow-hidden group border-4 border-transparent hover:border-primary cursor-pointer" style="width: 320px; height: 450px;">
+                            <div class="swiper cardSwiper w-full h-full absolute inset-0 z-0">
+                                <div class="swiper-wrapper cursor-grab active:cursor-grabbing">
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-7am-1.jpg" alt="7 AM" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-7am-2.jpg" alt="7 AM" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-7am-3.jpg" alt="7 AM" class="w-full h-full object-cover"></div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10 pointer-events-none"></div>
+                            <div class="absolute bottom-0 left-0 w-full h-1/2 z-20 arrasta-externo"></div>
+                            <button onclick="abrirModalExpandido('seteAm', event)" class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                                <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                            </button>
+                            <div class="absolute bottom-6 left-6 right-6 z-20 text-white pointer-events-none">
+                                <h4 class="text-xl font-bold uppercase mb-1 drop-shadow-md">7 AM</h4>
+                                <p class="font-roboto text-gray-200 text-sm mb-1.5 drop-shadow">De Valiere Bello, 2025 | Curta-metragem</p>
+                                <div class="space-y-0.5 text-xs font-roboto text-gray-300">
+                                    <p class="drop-shadow"><strong>Gênero:</strong> Thriller Psicológico</p>
+                                    <div class="flex items-center mt-2">
+                                        <p class="text-primary font-semibold drop-shadow-lg text-sm">Personagem: Esteban (protagonista)</p>
+                                        <div class="swiper-pagination !relative !bottom-0 !w-auto flex items-center pointer-events-auto ml-auto"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article onclick="abrirModalExpandido('maeCoragem', event)" class="swiper-slide bg-dark organic-card shadow-sm hover:shadow-2xl transition-shadow transition-colors duration-300 relative overflow-hidden group border-4 border-transparent hover:border-primary cursor-pointer" style="width: 320px; height: 450px;">
+                            <div class="swiper cardSwiper w-full h-full absolute inset-0 z-0">
+                                <div class="swiper-wrapper cursor-grab active:cursor-grabbing">
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-enmc-1.jpg" alt="Mãe Coragem" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-enmc-2.jpg" alt="Mãe Coragem" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-enmc-3.jpg" alt="Mãe Coragem" class="w-full h-full object-cover"></div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10 pointer-events-none"></div>
+                            <div class="absolute bottom-0 left-0 w-full h-1/2 z-20 arrasta-externo"></div>
+                            <button onclick="abrirModalExpandido('maeCoragem', event)" class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                                <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                            </button>
+                            <div class="absolute bottom-6 left-6 right-6 z-20 text-white pointer-events-none">
+                                <h4 class="text-xl font-bold uppercase mb-1 drop-shadow-md">Esta Noite Mãe Coragem</h4>
+                                <p class="font-roboto text-gray-200 text-sm mb-1.5 drop-shadow">De Antonio Hildebrando, 2023 | Espetáculo</p>
+                                <div class="space-y-0.5 text-xs font-roboto text-gray-300">
+                                    <p class="drop-shadow"><strong>Gênero:</strong> Cabaret</p>
+                                    <div class="flex items-center mt-2">
+                                        <p class="text-primary font-semibold drop-shadow-lg text-sm">Personagem: Tôca</p>
+                                        <div class="swiper-pagination !relative !bottom-0 !w-auto flex items-center pointer-events-auto ml-auto"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article onclick="abrirModalExpandido('conexoes', event)" class="swiper-slide bg-dark organic-card shadow-sm hover:shadow-2xl transition-shadow transition-colors duration-300 relative overflow-hidden group border-4 border-transparent hover:border-primary cursor-pointer" style="width: 320px; height: 450px;">
+                            <div class="swiper cardSwiper w-full h-full absolute inset-0 z-0">
+                                <div class="swiper-wrapper cursor-grab active:cursor-grabbing">
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-cnt-1.jpg" alt="Conexões Não Táteis" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-cnt-2.jpg" alt="Conexões Não Táteis" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-cnt-3.jpg" alt="Conexões Não Táteis" class="w-full h-full object-cover"></div>
+                                    <div class="swiper-slide"><img src="assets/url-img-atuacao-cnt-4.jpg" alt="Conexões Não Táteis" class="w-full h-full object-cover"></div>
+                                </div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10 pointer-events-none"></div>
+                            <div class="absolute bottom-0 left-0 w-full h-1/2 z-20 arrasta-externo"></div>
+                            <button onclick="abrirModalExpandido('conexoes', event)" class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                                <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                            </button>
+                            <div class="absolute bottom-6 left-6 right-6 z-20 text-white pointer-events-none">
+                                <h4 class="text-xl font-bold uppercase mb-1 drop-shadow-md">Conexões Não Táteis</h4>
+                                <p class="font-roboto text-gray-200 text-sm mb-1.5 drop-shadow">De Will Miller e Cine Barranco, 2021 | Websérie</p>
+                                <div class="space-y-0.5 text-xs font-roboto text-gray-300">
+                                    <p class="drop-shadow"><strong>Gênero:</strong> Drama contemporâneo</p>
+                                    <div class="flex items-center mt-2">
+                                        <p class="text-primary font-semibold drop-shadow-lg text-sm">Personagem: Luan (protagonista)</p>
+                                        <div class="swiper-pagination !relative !bottom-0 !w-auto flex items-center pointer-events-auto ml-auto"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </div>
+            
+            <h3 class="text-2xl font-bold mb-8 text-primary uppercase border-l-4 border-primary pl-4 mt-12">Direção</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto w-full">
+                
+                <article onclick="abrirModalExpandido('dir_interim', event)" class="bg-dark organic-card shadow-lg hover:shadow-2xl transition-shadow transition-colors duration-300 relative overflow-hidden group h-[225px] border-4 border-transparent hover:border-primary cursor-pointer w-full">
+                    
+                    <div class="swiper cardSwiperAuto w-full h-full absolute inset-0 z-0 card-direcao-gallery" data-projeto="interim">
+                        <div class="swiper-wrapper cursor-grab active:cursor-grabbing">
+                            <div class="swiper-slide"><img src="assets/url-img-direcao-interim-3.jpg" alt="Interim" class="w-full h-full object-cover" style="object-position: center 20%;"></div>
+                            <div class="swiper-slide"><img src="assets/url-img-direcao-interim-2.jpg" alt="Interim" class="w-full h-full object-cover" style="object-position: center 20%;"></div>
+                            <div class="swiper-slide"><img src="assets/url-img-direcao-interim-1.jpg" alt="Interim" class="w-full h-full object-cover" style="object-position: center 20%;"></div>
+                        </div>
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10 pointer-events-none"></div>
+                        
+                        <button onclick="abrirModalExpandido('dir_interim', event)" class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                            <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                        </button>
+
+                        <div class="absolute bottom-6 left-6 right-6 z-20 text-white pointer-events-none">
+                            <h4 class="text-xl font-bold uppercase mb-1 drop-shadow-md">Ínterim</h4>
+                            <p class="font-roboto text-gray-200 text-sm mb-1.5 drop-shadow">De Ray Ariana, 2024 | Cena Curta</p>
+                            
+                            <div class="space-y-0.5 text-xs font-roboto text-gray-300">
+                                <p class="drop-shadow"><strong>Gênero:</strong> Teatro Negro, Contação</p>
+                                
+                                <div class="flex items-center mt-2">
+                                    <p class="text-primary font-semibold drop-shadow-lg text-sm">Direção de Elenco: Will Miller</p>
+                                    
+                                    <div class="swiper-pagination !relative !bottom-0 !w-auto flex items-center pointer-events-auto ml-auto"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article onclick="abrirModalExpandido('dir_bclf', event)" class="bg-dark organic-card shadow-lg hover:shadow-2xl transition-shadow transition-colors duration-300 relative overflow-hidden group h-[225px] border-4 border-transparent hover:border-primary cursor-pointer w-full">
+                    
+                    <div class="swiper cardSwiperAuto w-full h-full absolute inset-0 z-0">
+                        <div class="swiper-wrapper cursor-grab active:cursor-grabbing">
+                            <div class="swiper-slide"><img src="assets/url-img-direcao-bclf-2.jpg" alt="Bella Como Las Fresias" class="w-full h-full object-cover" style="object-position: center center;"></div>
+                            <div class="swiper-slide"><img src="assets/url-img-direcao-bclf-4.jpg" alt="Bella Como Las Fresias" class="w-full h-full object-cover" style="object-position: center center;"></div>
+                            <div class="swiper-slide"><img src="assets/url-img-direcao-bclf-3.jpg" alt="Bella Como Las Fresias" class="w-full h-full object-cover" style="object-position: center center;"></div>
+                        </div>
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10 pointer-events-none"></div>
+                        
+                        <button onclick="abrirModalExpandido('dir_bclf', event)" class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                            <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                        </button>
+
+                        <div class="absolute bottom-6 left-6 right-6 z-20 text-white pointer-events-none">
+                            <h4 class="text-xl font-bold uppercase mb-1 drop-shadow-md leading-tight">Bella Como Las Fresias</h4>
+                            <p class="font-roboto text-gray-200 text-sm mb-1.5 drop-shadow">De Uriel Agramont, 2025 | Curta-metragem</p>
+                            
+                            <div class="space-y-0.5 text-xs font-roboto text-gray-300">
+                                <p class="drop-shadow"><strong>Gênero:</strong> Drama Contemporâneo</p>
+                                
+                                <div class="flex items-center mt-2">
+                                    <p class="text-primary font-semibold drop-shadow-lg text-sm">Direção de Elenco: Will Miller</p>
+                                    <div class="swiper-pagination !relative !bottom-0 !w-auto flex items-center pointer-events-auto ml-auto"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+                
+            </div>
+        </div>
+    </section>
+
+    <section id="literatura" class="section-padding bg-[#E07A5F]/10 relative">
+        <div class="container mx-auto px-6 max-w-5xl flex flex-col md:flex-row items-center md:items-start gap-12">
+            
+            <div class="w-full md:w-80 shrink-0 flex justify-center md:justify-start">
+                <div class="relative w-64 h-[26rem] md:w-80 md:h-[32rem] overflow-hidden livro-shape shadow-xl cursor-pointer transition-all duration-300 hover:brightness-110 hover:shadow-2xl hover-moldura-laranja group" onclick="abrirGaleriaLivro()">
+                    <img src="assets/url-img-livro-tf-1.jpg" alt="Livro Terra Funda" class="w-full h-full object-cover relative scale-[1.3] -translate-x-0 translate-y-1">
+                    
+                    <button class="absolute top-4 right-[75px] z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                        <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                    </button>
+                </div>
+            </div>
+            
+            <div class="w-full flex-1 md:max-w-[500px] md:ml-auto">
+                <h2 class="text-4xl font-bold uppercase text-dark mb-2">Livro <span class="italic">Terra Funda</span></h2>
+                
+                <div onclick="toggleFichaTecnica()" class="inline-flex items-center cursor-pointer group mb-6 select-none">
+                    <p class="text-lg font-bold">
+                        <span class="text-[#E07A5F] group-hover:brightness-110 transition-all">Autor: Will Miller</span> 
+                        <span class="text-dark"> • Ed. Pá de Mundo</span>
+                    </p>
+                    <i id="seta-ficha" class="fas fa-chevron-down text-[#E07A5F] ml-3 text-[15px] transition-transform duration-300 group-hover:translate-y-0.5"></i>
+                </div>
+
+                <div id="ficha-tecnica" class="max-h-0 overflow-hidden transition-all duration-500 ease-in-out opacity-0">
+                    <div class="flex flex-wrap gap-2 mb-5">
+                        <span class="bg-primary/10 border-2 border-primary/30 text-dark px-3 py-1 rounded-full text-xs font-medium hover:shadow-md transition-shadow cursor-default">Dramaturgia</span>
+                        <span class="bg-primary/10 border-2 border-primary/30 text-dark px-3 py-1 rounded-full text-xs font-medium hover:shadow-md transition-shadow cursor-default">Ficção contemporânea</span>
+                        <span class="bg-primary/10 border-2 border-primary/30 text-dark px-3 py-1 rounded-full text-xs font-medium hover:shadow-md transition-shadow cursor-default">Teatro Brasileiro</span>
+                    </div>
+                    
+                    <div class="font-montserrat font-light text-sm text-dark space-y-1 mb-6">
+                        <p><strong>Páginas:</strong> 60</p>
+                        <p><strong>Dimensões:</strong> 14 x 21cm</p>
+                        <p><strong>ISBN:</strong> 978-65-01-47874-6</p>
+                        <p><strong>Classificação indicativa:</strong> 12+</p>
+                        <p><strong>Ilustrações:</strong> <a href="https://www.instagram.com/rafamaart/" target="_blank" class="text-[#E07A5F] underline font-medium hover:text-dark transition-colors duration-300">Rafa Maart</a></p>
+                        <p><strong>Lançamento:</strong> 25 de julho de 2025</p>
+                        <p><strong>Produção e Impressão:</strong> <a href="https://www.instagram.com/astragabfilpi/" target="_blank" class="text-[#E07A5F] underline font-medium hover:text-dark transition-colors duration-300">Astra Gab. Filpi</a> e <a href="https://www.instagram.com/pademundo/" target="_blank" class="text-[#E07A5F] underline font-medium hover:text-dark transition-colors duration-300">Editora Pá de Mundo</a></p>
+                    </div>
+                    
+                    <hr class="border-t-2 border-primary/30 mb-6">
+                </div>
+                
+                <p class="font-roboto text-dark leading-relaxed mb-8 text-lg text-justify">
+                    "Um mergulho no solo vivo da memória, onde afetos, brincadeiras e resistências de um povo negro se entrelaçam como raízes. Em ato único, dois atuantes dão corpo a quatro personagens em uma narrativa costurada por oralidade, ecologia e ancestralidade. Terra Funda entrelaça lembranças pessoais e coletivas num teatro de denúncia e afeto, que confronta o apagamento das memórias e a devastação ambiental do território. Aqui, cada gesto é semente, cada palavra é terra."
+                </p>
+                
+                <div class="flex flex-col gap-4 w-full">
+                    <div class="group relative block w-full bg-dark text-white font-bold organic-card hover:bg-primary hover:text-dark transition-all duration-500 ease-in-out overflow-hidden max-h-[48px] hover:max-h-[300px]">
+                        <div class="flex items-center justify-center h-[48px] cursor-default">Comprar Físico</div>
+                        <div class="flex flex-col gap-2 px-6 pb-4 pt-0 opacity-0 transition-opacity duration-300 delay-100 group-hover:opacity-100">
+                            <p class="text-[10px] text-white/70 italic text-center -mt-2 mb-1">Redirecionamento para contato ou lojas parceiras.</p>
+                            <a href="https://wa.link/gqcbc1" target="_blank" rel="noopener noreferrer" class="bg-black/10 text-dark px-3 py-2 rounded-full text-xs font-medium hover:shadow-md transition-shadow text-center">Onde comprar em Belo Horizonte</a>
+                            <a href="https://www.instagram.com/conversinhoss" target="_blank" rel="noopener noreferrer" class="bg-black/10 text-dark px-3 py-2 rounded-full text-xs font-medium hover:shadow-md transition-shadow text-center">Onde comprar em Montes Claros</a>
+                            <a href="https://www.instagram.com/centrodeartesanatojanu" target="_blank" rel="noopener noreferrer" class="bg-black/10 text-dark px-3 py-2 rounded-full text-xs font-medium hover:shadow-md transition-shadow text-center">Onde comprar em Januária</a>
+                        </div>
+                    </div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 w-full">
+                        <a href="https://www.amazon.com.br/Terra-Funda-Will-Miller-ebook/dp/B0FMRVGZS5" target="_blank" rel="noopener noreferrer" class="block flex-1 text-center bg-transparent border-2 border-primary text-dark font-bold px-4 py-3 organic-card hover:bg-primary transition-colors">Amazon Kindle</a>
+                        <a href="https://play.google.com/store/books/details/Wily_Leite_Silva_Terra_Funda?id=EwN_EQAAQBAJ" target="_blank" rel="noopener noreferrer" class="block flex-1 text-center bg-transparent border-2 border-primary text-dark font-bold px-4 py-3 organic-card hover:bg-primary transition-colors">Play Livros</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <section id="educacao" class="pt-24 pb-12 bg-light">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-4xl font-bold uppercase text-dark mb-10 text-center">Arte-Educação</h2>
+            
+            <div class="flex flex-col gap-8 mx-auto w-full">
+                
+                <article onclick="abrirModalExpandido('educ_ccbb', event)" class="bg-white organic-card shadow-sm hover:shadow-2xl transition-shadow transition-colors duration-300 relative overflow-hidden group min-h-[225px] md:h-[225px] border-4 border-dark hover:border-primary cursor-pointer flex flex-col md:flex-row w-full">
+                    
+                    <div class="w-full md:w-1/3 h-48 md:h-full relative flex-shrink-0 z-0">
+                        <div class="swiper cardSwiperAuto w-full h-full absolute inset-0">
+                            <div class="swiper-wrapper cursor-grab active:cursor-grabbing">
+                                <div class="swiper-slide"><img src="assets/url-img-arteduc-ccbb-1.jpg" alt="CCBB BH" class="w-full h-full object-cover" style="object-position: center center;"></div>
+                                <div class="swiper-slide"><img src="assets/url-img-arteduc-ccbb-2.jpg" alt="CCBB BH" class="w-full h-full object-cover" style="object-position: center center;"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10 pointer-events-none"></div>
+                            
+                            <button onclick="abrirModalExpandido('educ_ccbb', event)" class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                                <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                            </button>
+                            
+                            <div class="swiper-pagination !relative !bottom-4 !w-full flex justify-end pr-4 pointer-events-auto absolute"></div>
+                        </div>
+                    </div>
+
+                    <div class="w-full md:w-2/3 p-6 md:p-8 flex flex-col justify-center z-10">
+                        <h3 class="text-xl md:text-2xl font-bold uppercase mb-1 text-dark leading-tight border-l-4 border-primary pl-3 md:pl-4">Centro Cultural Banco do Brasil (CCBB-BH)</h3>
+                        <p class="text-sm md:text-base text-primary font-bold mb-3 pl-4 md:pl-5">Educador e Mediador Cultural (2024-2025)</p>
+                        <p class="font-roboto text-gray-700 text-sm md:text-base leading-relaxed pl-4 md:pl-5">Atuação na comunicação entre obras e público visitante; criação de narrativas e roteiros para visitas guiadas, mediação para público diverso.</p>
+                    </div>
+                </article>
+
+                <article onclick="abrirModalExpandido('educ_mhnjb', event)" class="bg-white organic-card shadow-sm hover:shadow-2xl transition-shadow transition-colors duration-300 relative overflow-hidden group min-h-[225px] md:h-[225px] border-4 border-dark hover:border-primary cursor-pointer flex flex-col md:flex-row w-full">
+                    
+                    <div class="w-full md:w-1/3 h-48 md:h-full relative flex-shrink-0 z-0">
+                        <div class="swiper cardSwiperAuto w-full h-full absolute inset-0">
+                            <div class="swiper-wrapper cursor-grab active:cursor-grabbing">
+                                <div class="swiper-slide"><img src="assets/url-img-arteduc-mhnjb-2.jpg" alt="MHNJB" class="w-full h-full object-cover" style="object-position: center center;"></div>
+                                <div class="swiper-slide"><img src="assets/url-img-arteduc-mhnjb-1.jpg" alt="MHNJB" class="w-full h-full object-cover" style="object-position: center center;"></div>
+                            </div>
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10 pointer-events-none"></div>
+                            
+                            <button onclick="abrirModalExpandido('educ_mhnjb', event)" class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                                <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                            </button>
+                            
+                            <div class="swiper-pagination !relative !bottom-4 !w-full flex justify-end pr-4 pointer-events-auto absolute"></div>
+                        </div>
+                    </div>
+
+                    <div class="w-full md:w-2/3 p-6 md:p-8 flex flex-col justify-center z-10">
+                        <h3 class="text-xl md:text-2xl font-bold uppercase mb-1 text-dark leading-tight border-l-4 border-primary pl-3 md:pl-4">Museu de História Natural (MHNJB)</h3>
+                        <p class="text-sm md:text-base text-primary font-bold mb-3 pl-4 md:pl-5">Educador e Mediador Museal (2023-2024)</p>
+                        <p class="font-roboto text-gray-700 text-sm md:text-base leading-relaxed pl-4 md:pl-5">Mediação, idealização e roteirização da série autoral "Contos e Ecologias"; criação de conteúdos para divulgação científica.</p>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+   <section id="producao" class="pt-12 pb-24 bg-light">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-4xl font-bold uppercase text-dark mb-10 text-center">Produção Cultural</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mx-auto w-full">
+                
+                <article onclick="abrirModalExpandido('prod_ori', event)" class="bg-dark organic-card shadow-lg hover:shadow-2xl transition-shadow transition-colors duration-300 relative overflow-hidden group h-[225px] border-4 border-transparent hover:border-primary cursor-pointer w-full">
+                    
+                    <div class="swiper cardSwiperAuto w-full h-full absolute inset-0 z-0">
+                        <div class="swiper-wrapper cursor-grab active:cursor-grabbing">
+                            <div class="swiper-slide"><img src="assets/url-img-producao-oom-1.jpg" alt="Ori Ojurere Mi" class="w-full h-full object-cover" style="object-position: center center;"></div>
+                            <div class="swiper-slide"><img src="assets/url-img-producao-oom-2.jpg" alt="Ori Ojurere Mi" class="w-full h-full object-cover" style="object-position: center center;"></div>
+                        </div>
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10 pointer-events-none"></div>
+                        
+                        <button onclick="abrirModalExpandido('prod_ori', event)" class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                            <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                        </button>
+
+                        <div class="absolute bottom-6 left-6 right-6 z-20 text-white pointer-events-none">
+                            <h4 class="text-xl font-bold uppercase mb-1 drop-shadow-md">Ori Ojurere Mi</h4>
+                            <p class="font-roboto text-gray-200 text-sm mb-1.5 drop-shadow">Curta-metragem</p>
+                            
+                            <div class="space-y-0.5 text-xs font-roboto text-gray-300">
+                                <p class="drop-shadow"><strong>Apoio:</strong> Fundo Municipal de Cultura FMC/BH</p>
+                                
+                                <div class="flex items-center mt-2">
+                                    <p class="text-primary font-semibold drop-shadow-lg text-sm">Assistente de Produção</p>
+                                    <div class="swiper-pagination !relative !bottom-0 !w-auto flex items-center pointer-events-auto ml-auto"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article onclick="abrirModalExpandido('prod_conexoes', event)" class="bg-dark organic-card shadow-lg hover:shadow-2xl transition-shadow transition-colors duration-300 relative overflow-hidden group h-[225px] border-4 border-transparent hover:border-primary cursor-pointer w-full">
+                    
+                    <div class="swiper cardSwiperAuto w-full h-full absolute inset-0 z-0">
+                        <div class="swiper-wrapper cursor-grab active:cursor-grabbing">
+                            <div class="swiper-slide"><img src="assets/url-img-atuacao-cnt-1.jpg" alt="Conexões Não Táteis" class="w-full h-full object-cover" style="object-position: center center;"></div>
+                            <div class="swiper-slide"><img src="assets/url-img-atuacao-cnt-2.jpg" alt="Conexões Não Táteis" class="w-full h-full object-cover" style="object-position: center center;"></div>
+                            <div class="swiper-slide"><img src="assets/url-img-atuacao-cnt-3.jpg" alt="Conexões Não Táteis" class="w-full h-full object-cover" style="object-position: center center;"></div>
+                            <div class="swiper-slide"><img src="assets/url-img-atuacao-cnt-4.jpg" alt="Conexões Não Táteis" class="w-full h-full object-cover" style="object-position: center center;"></div>
+                        </div>
+
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10 pointer-events-none"></div>
+                        
+                        <button onclick="abrirModalExpandido('prod_conexoes', event)" class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                            <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                        </button>
+
+                        <div class="absolute bottom-6 left-6 right-6 z-20 text-white pointer-events-none">
+                            <h4 class="text-xl font-bold uppercase mb-1 drop-shadow-md">Conexões Não Táteis</h4>
+                            <p class="font-roboto text-gray-200 text-sm mb-1.5 drop-shadow">Websérie</p>
+                            
+                            <div class="space-y-0.5 text-xs font-roboto text-gray-300">
+                                <p class="drop-shadow"><strong>Apoio:</strong> Lei Aldir Blanc</p>
+                                
+                                <div class="flex items-center mt-2">
+                                    <p class="text-primary font-semibold drop-shadow-lg text-sm">Roteirista e Produtor</p>
+                                    <div class="swiper-pagination !relative !bottom-0 !w-auto flex items-center pointer-events-auto ml-auto"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="section-padding bg-dark text-white relative overflow-hidden">
+        <div class="blob-bg blob-1" style="bottom: 0; top: auto;"></div>
+        <div class="container mx-auto px-6 max-w-6xl relative z-10 text-center">
+            
+            <h2 class="text-5xl md:text-6xl font-extrabold uppercase mb-8">Vamos Trabalhar Juntos?</h2>
+            
+            <div class="flex flex-col md:flex-row justify-center items-center gap-8 mb-16 flex-wrap">
+                <a href="mailto:silvawilyleite@gmail.com" class="flex items-center justify-center gap-3 text-xl hover:text-primary transition-colors">
+                    <i class="fas fa-envelope text-primary"></i> silvawilyleite@gmail.com
+                </a>
+                <a href="https://wa.link/gqcbc1" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 text-xl hover:text-primary transition-colors">
+                    <i class="fab fa-whatsapp text-primary"></i> (31) 98281-1162
+                </a>
+                <a href="https://www.instagram.com/xwillmiller/" target="_blank" rel="noopener noreferrer" class="flex items-center justify-center gap-3 text-xl hover:text-primary transition-colors">
+                    <i class="fab fa-instagram text-primary"></i> @xwillmiller
+                </a>
+            </div>
+
+            <h3 class="text-2xl font-bold uppercase mb-8 text-primary">Galeria</h3>
+            <div class="columns-2 md:columns-3 gap-4 space-y-4 pb-12">
+                <div class="relative group cursor-pointer inline-block w-full organic-img overflow-hidden transition-all duration-300 hover:brightness-110 hover:shadow-2xl hover-moldura-verde" onclick="abrirGaleriaFinal(0)">
+                    <img src="assets/url-img-perfil-3.png" class="w-full">
+                    <button class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                        <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                    </button>
+                </div>
+                
+                <div class="relative group cursor-pointer inline-block w-full organic-img overflow-hidden transition-all duration-300 hover:brightness-110 hover:shadow-2xl hover-moldura-verde" onclick="abrirGaleriaFinal(1)">
+                    <img src="assets/url-img-perfil-6.png" class="w-full">
+                    <button class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                        <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                    </button>
+                </div>
+                
+                <div class="relative group cursor-pointer inline-block w-full organic-img overflow-hidden transition-all duration-300 hover:brightness-110 hover:shadow-2xl hover-moldura-verde" onclick="abrirGaleriaFinal(2)">
+                    <img src="assets/url-img-perfil-2.jpg" class="w-full">
+                    <button class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                        <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                    </button>
+                </div>
+                
+                <div class="relative group cursor-pointer inline-block w-full organic-img overflow-hidden transition-all duration-300 hover:brightness-110 hover:shadow-2xl hover-moldura-verde" onclick="abrirGaleriaFinal(3)">
+                    <img src="assets/url-img-perfil-5.jpg" class="w-full">
+                    <button class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                        <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                    </button>
+                </div>
+                
+                <div class="relative group cursor-pointer inline-block w-full organic-img overflow-hidden transition-all duration-300 hover:brightness-110 hover:shadow-2xl hover-moldura-verde" onclick="abrirGaleriaFinal(4)">
+                    <img src="assets/url-img-perfil-4.png" class="w-full">
+                    <button class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                        <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                    </button>
+                </div>
+                
+                <div class="relative group cursor-pointer inline-block w-full organic-img overflow-hidden transition-all duration-300 hover:brightness-110 hover:shadow-2xl hover-moldura-verde" onclick="abrirGaleriaFinal(5)">
+                    <img src="assets/url-img-livro-tf-4.jpg" class="w-full">
+                    <button class="absolute top-4 right-4 z-30 bg-white/60 backdrop-blur-md border border-white/20 text-dark text-[10px] font-bold uppercase tracking-wider px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all hover:bg-primary hover:text-dark flex items-center gap-1.5 pointer-events-auto shadow-sm">
+                        <i class="fas fa-search-plus text-[11px]"></i> Ampliar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-gray-400 py-6 text-center text-sm font-roboto border-t border-white/10 relative z-10">
+        <div class="container mx-auto px-6">
+            <p>&copy; 2026 Will Miller. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div id="modal-galeria-perfil" class="fixed inset-0 bg-black/95 z-[1000] hidden items-center justify-center backdrop-blur-sm transition-opacity duration-300 opacity-0" onclick="fecharGaleriaPerfilSeForFora(event)">
+        <button onclick="fecharGaleriaPerfil()" class="absolute top-6 right-8 w-12 h-12 flex items-center justify-center group z-[1100] bg-white/60 backdrop-blur-md border border-white/20 hover:bg-primary transition-all rounded-full cursor-pointer shadow-sm">
+            <span class="absolute w-5 h-0.5 bg-dark transition-colors rotate-45"></span>
+            <span class="absolute w-5 h-0.5 bg-dark transition-colors -rotate-45"></span>
+        </button>
+        <div class="swiper galeriaPerfilSwiper w-full h-full flex items-center justify-center relative">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide flex items-center justify-center"><img src="assets/url-img-perfil-2.jpg" class="max-h-[90vh] max-w-[90vw] object-contain rounded-sm shadow-2xl"></div>
+                <div class="swiper-slide flex items-center justify-center"><img src="assets/url-img-perfil-3.png" class="max-h-[90vh] max-w-[90vw] object-contain rounded-sm shadow-2xl"></div>
+            </div>
+            <div class="swiper-pagination !bottom-8"></div>
+            <div class="swiper-nav-expandido swiper-button-next"></div>
+            <div class="swiper-nav-expandido swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div id="modal-galeria-livro" class="fixed inset-0 bg-black/95 z-[1000] hidden items-center justify-center backdrop-blur-sm transition-opacity duration-300 opacity-0" onclick="fecharGaleriaLivroSeForFora(event)">
+        <button onclick="fecharGaleriaLivro()" class="absolute top-6 right-8 w-12 h-12 flex items-center justify-center group z-[1100] bg-white/60 backdrop-blur-md border border-white/20 hover:bg-primary transition-all rounded-full cursor-pointer shadow-sm">
+            <span class="absolute w-5 h-0.5 bg-dark transition-colors rotate-45"></span>
+            <span class="absolute w-5 h-0.5 bg-dark transition-colors -rotate-45"></span>
+        </button>
+        <div class="swiper galeriaLivroSwiper w-full h-full flex items-center justify-center relative">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide flex items-center justify-center"><img src="assets/url-img-livro-tf-1.jpg" class="max-h-[90vh] max-w-[90vw] object-contain rounded-sm shadow-2xl"></div>
+                <div class="swiper-slide flex items-center justify-center"><img src="assets/url-img-livro-tf-6.jpg" class="max-h-[90vh] max-w-[90vw] object-contain rounded-sm shadow-2xl"></div>
+                <div class="swiper-slide flex items-center justify-center"><img src="assets/url-img-livro-tf-2.png" class="max-h-[90vh] max-w-[90vw] object-contain rounded-sm shadow-2xl"></div>
+                <div class="swiper-slide flex items-center justify-center"><img src="assets/url-img-livro-tf-5.jpg" class="max-h-[90vh] max-w-[90vw] object-contain rounded-sm shadow-2xl"></div>
+            </div>
+            <div class="swiper-pagination !bottom-8"></div>
+            <div class="swiper-nav-expandido swiper-button-next"></div>
+            <div class="swiper-nav-expandido swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div id="modal-galeria-final" class="fixed inset-0 bg-black/95 z-[1000] hidden items-center justify-center backdrop-blur-sm transition-opacity duration-300 opacity-0" onclick="fecharGaleriaFinalSeForFora(event)">
+        <button onclick="fecharGaleriaFinal()" class="absolute top-6 right-8 w-12 h-12 flex items-center justify-center group z-[1100] bg-white/60 backdrop-blur-md border border-white/20 hover:bg-primary transition-all rounded-full cursor-pointer shadow-sm">
+            <span class="absolute w-5 h-0.5 bg-dark transition-colors rotate-45"></span>
+            <span class="absolute w-5 h-0.5 bg-dark transition-colors -rotate-45"></span>
+        </button>
+        <div class="swiper galeriaFinalSwiper w-full h-full flex items-center justify-center relative">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide flex items-center justify-center"><img src="assets/url-img-perfil-3.png" class="max-h-[90vh] max-w-[90vw] object-contain rounded-sm shadow-2xl"></div>
+                <div class="swiper-slide flex items-center justify-center"><img src="assets/url-img-perfil-6.png" class="max-h-[90vh] max-w-[90vw] object-contain rounded-sm shadow-2xl"></div>
+                <div class="swiper-slide flex items-center justify-center"><img src="assets/url-img-perfil-2.jpg" class="max-h-[90vh] max-w-[90vw] object-contain rounded-sm shadow-2xl"></div>
+                <div class="swiper-slide flex items-center justify-center"><img src="assets/url-img-perfil-5.jpg" class="max-h-[90vh] max-w-[90vw] object-contain rounded-sm shadow-2xl"></div>
+                <div class="swiper-slide flex items-center justify-center"><img src="assets/url-img-perfil-4.png" class="max-h-[90vh] max-w-[90vw] object-contain rounded-sm shadow-2xl"></div>
+                <div class="swiper-slide flex items-center justify-center"><img src="assets/url-img-livro-tf-4.jpg" class="max-h-[90vh] max-w-[90vw] object-contain rounded-sm shadow-2xl"></div>
+            </div>
+            <div class="swiper-pagination !bottom-8"></div>
+            <div class="swiper-nav-expandido swiper-button-next"></div>
+            <div class="swiper-nav-expandido swiper-button-prev"></div>
+        </div>
+    </div>
+
+    <div id="modal-card-expandido" class="fixed inset-0 bg-black/95 z-[1000] hidden items-center justify-center backdrop-blur-sm transition-opacity duration-300 opacity-0" onclick="fecharModalExpandidoSeForFora(event)">
+        
+        <button onclick="fecharModalExpandido()" class="absolute top-6 right-8 w-12 h-12 flex items-center justify-center group z-[1100] bg-white/60 backdrop-blur-md border border-white/20 hover:bg-primary transition-all rounded-full cursor-pointer shadow-sm">
+            <span class="absolute w-5 h-0.5 bg-dark transition-colors rotate-45"></span>
+            <span class="absolute w-5 h-0.5 bg-dark transition-colors -rotate-45"></span>
+        </button>
+
+        <button id="btn-toggle-texto" onclick="toggleTextoExpandido(event)" class="absolute top-24 right-8 w-12 h-12 flex items-center justify-center group z-[1100] bg-white/60 backdrop-blur-md border border-white/20 hover:bg-primary transition-all rounded-full cursor-pointer text-dark pointer-events-auto shadow-sm">
+            <i id="icone-toggle-texto" class="fas fa-eye-slash text-lg transition-colors"></i>
+        </button>
+
+        <div class="swiper galeriaExpandidoSwiper w-full h-full flex items-center justify-center relative">
+            <div class="swiper-wrapper cursor-grab active:cursor-grabbing" id="expandido-swiper-wrapper">
+                </div>
+            
+            <div class="swiper-nav-expandido swiper-button-next"></div>
+            <div class="swiper-nav-expandido swiper-button-prev"></div>
+            
+            <div class="swiper-pagination !bottom-8"></div>
+        </div>
+
+        <div id="expandido-gradiente" class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent z-10 pointer-events-none transition-opacity duration-300"></div>
+
+        <div id="expandido-texto-container" class="absolute bottom-16 left-8 md:left-12 z-20 text-white transition-opacity duration-300 max-w-2xl pointer-events-none">
+            <h4 id="expandido-titulo" class="text-4xl md:text-5xl font-bold uppercase mb-2 drop-shadow-md"></h4>
+            
+            <p id="expandido-linha2" class="font-roboto text-gray-200 text-lg md:text-xl mb-4 drop-shadow pointer-events-auto">
+                </p>
+            
+            <div id="expandido-detalhes" class="space-y-1 font-roboto text-gray-300 text-base md:text-lg">
+                <p id="expandido-linha3" class="drop-shadow"></p>
+                <p id="expandido-linha4" class="text-primary font-semibold drop-shadow-lg"></p>
+            </div>
+        </div>
+
+    </div>
+
+    <button id="btn-back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="fixed bottom-8 right-8 w-12 h-12 flex items-center justify-center group z-40 transition-all duration-500 opacity-0 pointer-events-none bg-white/60 backdrop-blur-md border border-white/20 hover:bg-primary shadow-sm rounded-full">
+        <i class="fas fa-chevron-up text-dark transition-colors text-lg"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    
+    <script>
+        // =========================================================================
+        // BANCO DE DADOS: Textos e links para o Modal Expandido
+        // As chaves (ex: anaGuasu, educ_ccbb) dizem ao script qual layout de texto usar
+        // =========================================================================
+        const dadosProjetos = {
+            // -- SEÇÃO: ATUAÇÃO --
+            anaGuasu: {
+                titulo: "Aña Guasu",
+                diretor: "Lautaro Zarate",
+                diretorLink: "#",
+                restoLinha: ", 2025 | Curta-metragem",
+                genero: "Terror",
+                personagem: "Personagem: Mark (protagonista)",
+                imagens: [
+                    "assets/url-img-atuacao-ag-5.jpg",
+                    "assets/url-img-atuacao-ag-3.jpg",
+                    "assets/url-img-atuacao-ag-2.jpg",
+                    "assets/url-img-atuacao-ag-4.jpg"
+                ]
+            },
+            seteAm: {
+                titulo: "7 AM",
+                diretor: "Valiere Bello",
+                diretorLink: "https://www.instagram.com/juli.valiere/",
+                restoLinha: ", 2025 | Curta-metragem",
+                genero: "Thriller Psicológico",
+                personagem: "Personagem: Esteban (protagonista)",
+                imagens: [
+                    "assets/url-img-atuacao-7am-1.jpg",
+                    "assets/url-img-atuacao-7am-2.jpg",
+                    "assets/url-img-atuacao-7am-3.jpg"
+                ]
+            },
+            maeCoragem: {
+                titulo: "Esta Noite Mãe Coragem",
+                diretor: "Antonio Hildebrando",
+                diretorLink: "https://www.instagram.com/abhildebrando/",
+                restoLinha: ", 2023 | Espetáculo",
+                genero: "Cabaret",
+                personagem: "Personagem: Tôca",
+                imagens: [
+                    "assets/url-img-atuacao-enmc-1.jpg",
+                    "assets/url-img-atuacao-enmc-2.jpg",
+                    "assets/url-img-atuacao-enmc-3.jpg"
+                ]
+            },
+            conexoes: {
+                titulo: "Conexões Não Táteis",
+                diretorHTML: `<a href="https://www.instagram.com/xwillmiller/" target="_blank" class="text-primary hover:text-white underline transition-colors pointer-events-auto">Will Miller</a> e <a href="https://www.instagram.com/cinebarranco/" target="_blank" class="text-primary hover:text-white underline transition-colors pointer-events-auto">Cine Barranco</a>`,
+                restoLinha: ", 2021 | Websérie",
+                genero: "Drama contemporâneo",
+                personagem: "Personagem: Luan (protagonista)",
+                imagens: [
+                    "assets/url-img-atuacao-cnt-1.jpg",
+                    "assets/url-img-atuacao-cnt-2.jpg",
+                    "assets/url-img-atuacao-cnt-3.jpg",
+                    "assets/url-img-atuacao-cnt-4.jpg"
+                ]
+            },
+            // -- SEÇÃO: DIREÇÃO --
+            dir_interim: {
+                titulo: "Ínterim",
+                diretor: "Ray Ariana",
+                diretorLink: "https://www.instagram.com/ray__ariana/",
+                restoLinha: ", 2024 | Cena Curta",
+                genero: "Teatro negro, Contação",
+                personagem: "Direção de Elenco: Will Miller",
+                imagens: [
+                    "assets/url-img-direcao-interim-3.jpg",
+                    "assets/url-img-direcao-interim-2.jpg",
+                    "assets/url-img-direcao-interim-1.jpg"
+                ]
+            },
+            dir_bclf: {
+                titulo: "Bella Como Las Fresias",
+                diretor: "Uriel Agramont",
+                diretorLink: "https://www.instagram.com/uriel_agramont/",
+                restoLinha: ", 2025 | Curta-metragem",
+                genero: "Drama Contemporâneo",
+                personagem: "Direção de Elenco: Will Miller",
+                imagens: [
+                    "assets/url-img-direcao-bclf-2.jpg",
+                    "assets/url-img-direcao-bclf-4.jpg",
+                    "assets/url-img-direcao-bclf-3.jpg"
+                ]
+            },
+            // -- SEÇÃO: PRODUÇÃO CULTURAL --
+            prod_ori: {
+                titulo: "Ori Ojurere Mi",
+                diretor: "Ray Ariana", 
+                diretorLink: "https://www.instagram.com/ray__ariana/",
+                restoLinha: " | Curta-metragem",
+                genero: "Fundo Municipal de Cultura FMC/BH",
+                personagem: "Assistente de Produção",
+                imagens: [
+                    "assets/url-img-producao-oom-1.jpg",
+                    "assets/url-img-producao-oom-2.jpg"
+                ]
+            },
+            prod_conexoes: {
+                titulo: "Conexões Não Táteis",
+                diretorHTML: `<a href="https://www.instagram.com/xwillmiller/" target="_blank" class="text-primary hover:text-white underline transition-colors pointer-events-auto">Will Miller</a> e <a href="https://www.instagram.com/cinebarranco/" target="_blank" class="text-primary hover:text-white underline transition-colors pointer-events-auto">Cine Barranco</a>`,
+                restoLinha: ", 2021 | Websérie",
+                genero: "Lei Aldir Blanc",
+                personagem: "Roteirista e Produtor",
+                imagens: [
+                    "assets/url-img-atuacao-cnt-1.jpg",
+                    "assets/url-img-atuacao-cnt-2.jpg",
+                    "assets/url-img-atuacao-cnt-3.jpg",
+                    "assets/url-img-atuacao-cnt-4.jpg"
+                ]
+            },
+            // -- SEÇÃO: ARTE-EDUCAÇÃO --
+            educ_ccbb: {
+                titulo: "Centro Cultural Banco do Brasil",
+                diretor: "CCBB-BH", 
+                diretorLink: "https://ccbb.com.br/belo-horizonte/",
+                restoLinha: " | Estágio",
+                genero: "Arte-Educação",
+                personagem: "Educador e Mediador Cultural",
+                imagens: [
+                    "assets/url-img-arteduc-ccbb-1.jpg",
+                    "assets/url-img-arteduc-ccbb-2.jpg"
+                ]
+            },
+            educ_mhnjb: {
+                titulo: "Museu de História Natural",
+                diretor: "MHNJB / UFMG", 
+                diretorLink: "https://www.ufmg.br/mhnjb/",
+                restoLinha: " | Estágio/Extensão",
+                genero: "Arte-Educação",
+                personagem: "Educador e Mediador Museal",
+                imagens: [
+                    "assets/url-img-arteduc-mhnjb-2.jpg",
+                    "assets/url-img-arteduc-mhnjb-1.jpg"
+                ]
+            }
+        };
+
+        // =========================================================================
+        // LÓGICA DO MENU MOBILE (Abre e fecha ao clicar no ícone hambúrguer)
+        // =========================================================================
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        
+        function fecharMenuMobile() {
+            if (menu.classList.contains('max-h-[500px]')) {
+                menu.classList.add('max-h-0', 'opacity-0');
+                menu.classList.remove('max-h-[500px]', 'opacity-100', 'border-b');
+                btn.classList.add('text-dark');
+                btn.classList.remove('text-primary');
+            }
+        }
+
+        btn.addEventListener('click', () => {
+            btn.classList.add('scale-110');
+            setTimeout(() => { btn.classList.remove('scale-110'); }, 200);
+            menu.classList.toggle('max-h-0');
+            menu.classList.toggle('opacity-0');
+            menu.classList.toggle('max-h-[500px]');
+            menu.classList.toggle('opacity-100');
+            menu.classList.toggle('border-b');
+            btn.classList.toggle('text-dark');
+            btn.classList.toggle('text-primary');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => { link.addEventListener('click', fecharMenuMobile); });
+        window.addEventListener('scroll', fecharMenuMobile, { passive: true });
+        document.addEventListener('click', (event) => {
+            if (menu.classList.contains('max-h-[500px]') && !btn.contains(event.target) && !menu.contains(event.target)) {
+                fecharMenuMobile();
+            }
+        });
+
+        // =========================================================================
+        // INICIALIZAÇÃO DE CARROSSEIS ESTÁTICOS DA PÁGINA
+        // =========================================================================
+        
+        // 1. CARROSSEL EXTERNO DE ATUAÇÃO (Cravado no centro em todas as telas)
+        new Swiper('.atuacaoSwiper', {
+            slidesPerView: 'auto', 
+            spaceBetween: 32, 
+            loop: true, 
+            grabCursor: true,
+            centeredSlides: true, 
+            autoplay: { delay: 3000, disableOnInteraction: false }
+        });
+
+        // 2. CARROSSEL INTERNO DAS FOTOS (ATUAÇÃO)
+        document.querySelectorAll('.cardSwiper').forEach(element => {
+            // Isola a paginação para evitar que os clones roubem o pontinho errado
+            const parentArticle = element.closest('article');
+            new Swiper(element, {
+                loop: true, 
+                nested: true, 
+                grabCursor: true, 
+                pagination: { el: parentArticle ? parentArticle.querySelector('.swiper-pagination') : null, clickable: true }, 
+                touchReleaseOnEdges: true, 
+                noSwipingClass: 'arrasta-externo' // Mantém o deslize livre na área do texto
+            });
+        });
+
+        // 3. CARROSSEL DE FOTOS PERFIL (INÍCIO)
+        new Swiper('.profileSwiper', { loop: true, autoplay: { delay: 3000, disableOnInteraction: false } });
+
+        // 4. CARROSSEIS DE GALERIA SIMPLES (DIREÇÃO, ARTE-EDUCAÇÃO E PRODUÇÃO)
+        document.querySelectorAll('.cardSwiperAuto').forEach(element => {
+            new Swiper(element, {
+                loop: true, 
+                grabCursor: true, 
+                speed: 800,
+                autoplay: { delay: 3000, disableOnInteraction: false },
+                pagination: { el: element.querySelector('.swiper-pagination'), clickable: true } // Paginação blindada
+            });
+        });
+
+
+        // =========================================================================
+        // MODAIS EXPANDIDOS E GALERIAS EM TELA CHEIA
+        // =========================================================================
+        
+        // Função universal para abrir qualquer carrossel em modal
+        function abrirModalSwiper(modalId, swiperClass, swiperInstanceRef, options = {}) {
+            const modal = document.getElementById(modalId);
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => { modal.classList.remove('opacity-0'); }, 10);
+
+            const defaultOptions = {
+                loop: true, grabCursor: true, centeredSlides: true,
+                autoplay: { delay: 3000, disableOnInteraction: false },
+                pagination: { el: '.swiper-pagination', clickable: true },
+            };
+
+            if (!swiperInstanceRef.current) {
+                swiperInstanceRef.current = new Swiper(`.${swiperClass}`, { ...defaultOptions, ...options });
+            } else {
+                if (options.initialSlide !== undefined) swiperInstanceRef.current.slideToLoop(options.initialSlide, 0);
+                if(options.on) { Object.keys(options.on).forEach(key => { swiperInstanceRef.current.on(key, options.on[key]); }); }
+                swiperInstanceRef.current.update();
+                if (swiperInstanceRef.current.autoplay) swiperInstanceRef.current.autoplay.start();
+            }
+        }
+
+        function fecharModalSwiper(modalId, swiperInstanceRef) {
+            const modal = document.getElementById(modalId);
+            modal.classList.add('opacity-0');
+            setTimeout(() => { modal.classList.add('hidden'); modal.classList.remove('flex'); }, 300);
+            if (swiperInstanceRef.current && swiperInstanceRef.current.autoplay) swiperInstanceRef.current.autoplay.stop();
+        }
+
+        // Armazena as instâncias dos carrosseis
+        const swiperInstances = { 
+            perfil: { current: null }, 
+            livro: { current: null }, 
+            final: { current: null }, 
+            expandido: { current: null } 
+        };
+
+        function abrirGaleriaPerfil() { abrirModalSwiper('modal-galeria-perfil', 'galeriaPerfilSwiper', swiperInstances.perfil, { navigation: { nextEl: '.swiper-nav-expandido.swiper-button-next', prevEl: '.swiper-nav-expandido.swiper-button-prev' } }); }
+        function fecharGaleriaPerfil() { fecharModalSwiper('modal-galeria-perfil', swiperInstances.perfil); }
+        function fecharGaleriaPerfilSeForFora(event) { if (event.target.id === 'modal-galeria-perfil') fecharGaleriaPerfil(); }
+
+        function abrirGaleriaLivro() { abrirModalSwiper('modal-galeria-livro', 'galeriaLivroSwiper', swiperInstances.livro, { navigation: { nextEl: '.swiper-nav-expandido.swiper-button-next', prevEl: '.swiper-nav-expandido.swiper-button-prev' } }); }
+        function fecharGaleriaLivro() { fecharModalSwiper('modal-galeria-livro', swiperInstances.livro); }
+        function fecharGaleriaLivroSeForFora(event) { if (event.target.id === 'modal-galeria-livro') fecharGaleriaLivro(); }
+
+        function abrirGaleriaFinal(index) { abrirModalSwiper('modal-galeria-final', 'galeriaFinalSwiper', swiperInstances.final, { initialSlide: index, navigation: { nextEl: '.swiper-nav-expandido.swiper-button-next', prevEl: '.swiper-nav-expandido.swiper-button-prev' } }); }
+        function fecharGaleriaFinal() { fecharModalSwiper('modal-galeria-final', swiperInstances.final); }
+        function fecharGaleriaFinalSeForFora(event) { if (event.target.id === 'modal-galeria-final') fecharGaleriaFinal(); }
+
+        // Função de ocultar/exibir os textos no modal
+        function toggleTextoExpandido(event) {
+            if(event) event.stopPropagation(); 
+            const textContainer = document.getElementById('expandido-texto-container');
+            const gradiente = document.getElementById('expandido-gradiente');
+            const icone = document.getElementById('icone-toggle-texto');
+
+            if (textContainer.classList.contains('opacity-0')) {
+                textContainer.classList.remove('opacity-0');
+                gradiente.classList.remove('opacity-0');
+                icone.className = "fas fa-eye-slash text-lg transition-colors";
+            } else {
+                textContainer.classList.add('opacity-0');
+                gradiente.classList.add('opacity-0');
+                icone.className = "fas fa-eye text-lg transition-colors";
+            }
+        }
+
+        // =========================================================================
+        // PREENCHIMENTO DINÂMICO DOS PROJETOS (A Mágica do Layout Adaptável)
+        // =========================================================================
+        function abrirModalExpandido(key, event) {
+            if(event) event.stopPropagation(); 
+            
+            const dados = dadosProjetos[key];
+            if (!dados) return;
+
+            // Restaura o visual padrão para aberto
+            const textContainer = document.getElementById('expandido-texto-container');
+            const gradiente = document.getElementById('expandido-gradiente');
+            textContainer.classList.remove('opacity-0');
+            gradiente.classList.remove('opacity-0');
+            document.getElementById('icone-toggle-texto').className = "fas fa-eye-slash text-lg transition-colors";
+
+            // Injeta Título
+            document.getElementById('expandido-titulo').innerText = dados.titulo;
+            
+            // Formata os diretores/links (aceita os duplos da websérie ou simples)
+            let diretorFormatado = "";
+            if (dados.diretorHTML) {
+                diretorFormatado = dados.diretorHTML;
+            } else {
+                diretorFormatado = `<a href="${dados.diretorLink}" target="_blank" class="text-primary hover:text-white underline transition-colors pointer-events-auto">${dados.diretor}</a>`;
+            }
+
+            // Pega as linhas exatas do HTML de destino para preenchimento dinâmico
+            const linha2 = document.getElementById('expandido-linha2');
+            const detalhes = document.getElementById('expandido-detalhes');
+            const linha3 = document.getElementById('expandido-linha3');
+            const linha4 = document.getElementById('expandido-linha4');
+
+            // Lógica Adaptável por Categoria baseada na chave (key) que chamou a função:
+            if (key.startsWith('educ_')) {
+                // Modelo Arte-Educação
+                linha2.innerHTML = `${diretorFormatado}<span class="text-gray-200">${dados.restoLinha}</span>`;
+                detalhes.style.display = 'none'; // Esconde a parte de gênero e personagem
+                
+            } else if (key.startsWith('prod_')) {
+                // Modelo Produção Cultural
+                linha2.innerHTML = `De: ${diretorFormatado}<span class="text-gray-200">${dados.restoLinha}</span>`;
+                detalhes.style.display = 'block';
+                linha3.innerHTML = `<strong>Apoio:</strong> ${dados.genero}`;
+                linha4.innerHTML = dados.personagem; 
+                
+            } else if (key.startsWith('dir_')) {
+                // Modelo Direção
+                linha2.innerHTML = `De: ${diretorFormatado}<span class="text-gray-200">${dados.restoLinha}</span>`;
+                detalhes.style.display = 'block';
+                linha3.innerHTML = `<strong>Gênero:</strong> ${dados.genero}`;
+                linha4.innerHTML = dados.personagem; 
+            } else {
+                // Modelo Atuação (Padrão)
+                linha2.innerHTML = `De: ${diretorFormatado}<span class="text-gray-200">${dados.restoLinha}</span>`;
+                detalhes.style.display = 'block';
+                linha3.innerHTML = `<strong>Gênero:</strong> ${dados.genero}`;
+                linha4.innerHTML = dados.personagem; 
+            }
+
+            // Esvazia e preenche fotos do modal
+            const wrapper = document.getElementById('expandido-swiper-wrapper');
+            wrapper.innerHTML = ''; 
+            
+            dados.imagens.forEach(src => {
+                const slide = document.createElement('div');
+                slide.className = 'swiper-slide flex items-center justify-center';
+                slide.innerHTML = `<img src="${src}" class="max-h-[90vh] max-w-[90vw] object-contain rounded-sm shadow-2xl">`;
+                wrapper.appendChild(slide);
+            });
+
+            // Chama o Swiper Modal
+            abrirModalSwiper('modal-card-expandido', 'galeriaExpandidoSwiper', swiperInstances.expandido, {
+                autoplay: false, 
+                navigation: { nextEl: '.swiper-nav-expandido.swiper-button-next', prevEl: '.swiper-nav-expandido.swiper-button-prev' },
+            });
+        }
+
+        function fecharModalExpandido() { fecharModalSwiper('modal-card-expandido', swiperInstances.expandido); }
+        function fecharModalExpandidoSeForFora(event) { if (event.target.id === 'modal-card-expandido') fecharModalExpandido(); }
+
+        // =========================================================================
+        // INTERAÇÕES GERAIS (Seta Livro, Scroll Back to Top)
+        // =========================================================================
+        function toggleFichaTecnica() {
+            const ficha = document.getElementById('ficha-tecnica');
+            const seta = document.getElementById('seta-ficha');
+            if (ficha.classList.contains('max-h-0')) {
+                ficha.classList.remove('max-h-0', 'opacity-0');
+                ficha.classList.add('max-h-[500px]', 'opacity-100');
+                seta.classList.add('rotate-180');
+            } else {
+                ficha.classList.add('max-h-0', 'opacity-0');
+                ficha.classList.remove('max-h-[500px]', 'opacity-100');
+                seta.classList.remove('rotate-180');
+            }
+        }
+
+        const btnBackToTop = document.getElementById('btn-back-to-top');
+        const sectionSobre = document.getElementById('sobre');
+        const footer = document.querySelector('footer');
+        let isScrolling;
+
+        window.addEventListener('scroll', () => {
+            window.clearTimeout(isScrolling);
+            let scrollPosition = window.scrollY + window.innerHeight;
+            let footerTop = footer.offsetTop;
+            if (scrollPosition >= footerTop) { btnBackToTop.style.bottom = (32 + (scrollPosition - footerTop)) + "px"; } 
+            else { btnBackToTop.style.bottom = "32px"; }
+
+            if (window.scrollY >= (sectionSobre.offsetTop - 200)) {
+                btnBackToTop.classList.remove('opacity-0', 'pointer-events-none');
+                btnBackToTop.classList.add('opacity-100', 'pointer-events-auto');
+                isScrolling = setTimeout(() => {
+                    btnBackToTop.classList.add('opacity-0', 'pointer-events-none');
+                    btnBackToTop.classList.remove('opacity-100', 'pointer-events-auto');
+                }, 1500); 
+            } else {
+                btnBackToTop.classList.add('opacity-0', 'pointer-events-none');
+                btnBackToTop.classList.remove('opacity-100', 'pointer-events-auto');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
